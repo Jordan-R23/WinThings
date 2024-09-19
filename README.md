@@ -4,12 +4,12 @@ This repository contains an example of a kernel-mode keyboard driver for Windows
 ### Main Features:
 1. Keyboard Input Interception: The driver attaches to the keyboard class device (`KeyboardClass0`) and captures keypress events before they reach the operating system.
 2. IRP (I/O Request Packet) Processing:
-  - The driver intercepts and forwards read requests (`IRP_MJ_READ`), logging the scan codes of the pressed keys.
-  - A completion routine (`ReadComplete`) is used to process the received IRP data and determine whether a key has been pressed or released.
+    -   The driver intercepts and forwards read requests (`IRP_MJ_READ`), logging the scan codes of the pressed keys.
+    -   A completion routine (`ReadComplete`) is used to process the received IRP data and determine whether a key has been pressed or released.
 3. Device Detachment: Upon unloading, the driver ensures that all pending operations, such as keyboard reads, are completed before freeing the device resources.
 4. Support for Multiple Operations: Through dispatch functions, the driver manages various IRP requests, ensuring that system workflow remains unaffected by its operation.
 
-Key Functions:
+### Key Functions:
 1. DriverEntry: The driver's main entry point. It sets up the dispatch functions and attaches the driver to the keyboard device.
 
 2. DispatchPass: This function forwards IRP requests to the underlying keyboard device.
